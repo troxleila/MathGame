@@ -1,8 +1,9 @@
 import React from "react";
-import Router from "react-router-dom";
+import { Router, Route } from "react-router-dom";
+import Game from "./Game";
 
-class GamePanel extends React.Component {
-  render() {
+function GamePanel() {
+  return (
     <Router>
       <table>
         <td>
@@ -36,6 +37,8 @@ class GamePanel extends React.Component {
           </tr>
         </td>
       </table>
-    </Router>;
-  }
+    </Router>
+  );
 }
+
+export default GamePanel;

@@ -1,10 +1,11 @@
 import React from "react";
 import Game from "./Game";
+import GamePanel from "./GamePanel";
 import Link from "react-router-dom";
 import "./App.css";
 
 function App() {
-  state = {
+  const state = {
     wins: null,
   };
 
