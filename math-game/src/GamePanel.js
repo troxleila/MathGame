@@ -1,43 +1,42 @@
 import React from "react";
-import { Router, Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Game from "./Game";
 
 function GamePanel() {
+  const navigate = useNavigate();
+
   return (
-    <Router>
+    <div className="container">
+      <div className="title">
+        <h1>Pick Your Mode</h1>
+      </div>
       <table>
         <td>
           <tr>
-            <Route path="/addition" component={<Game operator="addition" />}>
+            <button className="btn" onClick={() => navigate("addition")}>
               +
-            </Route>
+            </button>
           </tr>
           <tr>
-            <Route
-              path="/multiplication"
-              component={<Game operator="multiplication" />}
-            >
+            <button className="btn" onClick={() => navigate("multiplication")}>
               x
-            </Route>
+            </button>
           </tr>
         </td>
         <td>
           <tr>
-            <Route
-              path="/subtraction"
-              component={<Game operator="subtraction" />}
-            >
+            <button className="btn" onClick={() => navigate("subtraction")}>
               -
-            </Route>
+            </button>
           </tr>
           <tr>
-            <Route path="/division" component={<Game operator="division" />}>
-              &division;
-            </Route>
+            <button className="btn" onClick={() => navigate("division")}>
+              /
+            </button>
           </tr>
         </td>
       </table>
-    </Router>
+    </div>
   );
 }
 

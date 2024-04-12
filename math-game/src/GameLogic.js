@@ -5,7 +5,7 @@ import {
   MULTIPLICATION,
 } from "./constants.js";
 
-export default function GameLogic({ numbers, operator }) {
+export function GameLogic(numbers, operator) {
   function operate(number1, number2) {
     if (operator === ADDITION) {
       return number1 + number2;
@@ -59,6 +59,8 @@ export default function GameLogic({ numbers, operator }) {
 
   return {
     possibilityOfSuccess() {
+      console.log("HERE");
+      console.log({ numbers });
       for (let i = 0; i < 16; i++) {
         let firstNumber = numbers[i];
         if (

@@ -1,14 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import GameLogic from "./GameLogic";
+import { GameLogic } from "./GameLogic";
 
 function Game({ operator }) {
   const [lives, setLives] = useState(3);
   const [win, setWin] = useState(false);
   const [numbers, setNumbers] = useState([]);
+  const [selected, setSelected] = useState([]);
   const MULTIPLIER = 10;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    generateNumbers();
+    console.log("generations");
+  }, []);
 
   // Event handlers or other methods
   function handleClick() {
@@ -20,17 +24,24 @@ function Game({ operator }) {
   }
 
   function generateNumbers() {
+    let numbersWorking = [];
+    console.log("in here");
     for (let i = 0; i < 16; i++) {
       let newNumber = Math.round(Math.random() * MULTIPLIER);
-      setNumbers([...numbers, { i, newNumber }]);
+      numbersWorking.push({ i, newNumber });
     }
-    if (!checkPossibilityOfSuccess()) {
+    console.log(numbersWorking);
+
+    if (!checkPossibilityOfSuccess(numbersWorking)) {
+      console.log("this?");
       generateNumbers();
     }
+    setNumbers(numbersWorking);
   }
 
-  function checkPossibilityOfSuccess() {
-    const gameLogic = GameLogic(numbers, operator);
+  function checkPossibilityOfSuccess(numbersChecking) {
+    const gameLogic = GameLogic(numbersChecking, operator);
+    console.log("between");
     return gameLogic.possibilityOfSuccess();
   }
 
