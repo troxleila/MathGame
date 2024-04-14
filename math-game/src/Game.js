@@ -2,16 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { GameLogic } from "./GameLogic";
 
-function Game({ operator }) {
+function Game(operator) {
   const [lives, setLives] = useState(3);
   const [win, setWin] = useState(false);
   const [numbers, setNumbers] = useState([]);
   const [selected, setSelected] = useState([]);
-  const MULTIPLIER = 10;
+  const MULTIPLIER = 20;
 
   useEffect(() => {
     generateNumbers();
-    console.log("generations");
   }, []);
 
   // Event handlers or other methods
@@ -25,12 +24,10 @@ function Game({ operator }) {
 
   function generateNumbers() {
     let numbersWorking = [];
-    console.log("in here");
     for (let i = 0; i < 16; i++) {
       let newNumber = Math.round(Math.random() * MULTIPLIER);
       numbersWorking.push({ i, newNumber });
     }
-    console.log(numbersWorking);
 
     if (!checkPossibilityOfSuccess(numbersWorking)) {
       console.log("this?");

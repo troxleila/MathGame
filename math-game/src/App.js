@@ -2,6 +2,12 @@ import React from "react";
 import Game from "./Game";
 import GamePanel from "./GamePanel";
 import NoMatch from "./NoMatch";
+import {
+  ADDITION,
+  SUBTRACTION,
+  DIVISION,
+  MULTIPLICATION,
+} from "./constants.js";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -11,17 +17,16 @@ function App() {
       <header className="App-header">
         <Routes>
           <Route path="/" element={<GamePanel />} />
-          <Route path="/addition" element={<Game operator="addition" />} />
+          <Route path="/addition" element={<Game operator={ADDITION} />} />
           <Route
             path="/multiplication"
-            element={<Game operator="multiplication" />}
+            element={<Game operator={MULTIPLICATION} />}
           />
           <Route
             path="/subtraction"
-            element={<Game operator="subtraction" />}
+            element={<Game operator={SUBTRACTION} />}
           />
-          <Route path="/division" element={<Game operator="division" />} />
-          <Route path="/division" element={<Game operator="division" />} />
+          <Route path="/division" element={<Game operator={DIVISION} />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </header>

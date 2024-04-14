@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { StyleSheet, View } from "react-native";
 import Game from "./Game";
 
 function GamePanel() {
@@ -10,7 +11,24 @@ function GamePanel() {
       <div className="title">
         <h1>Pick Your Mode</h1>
       </div>
-      <table>
+      <View style={styles.buttonContainer}>
+        <button style={styles.button} onClick={() => navigate("addition")}>
+          +
+        </button>
+        <button
+          style={styles.button}
+          onClick={() => navigate("multiplication")}
+        >
+          x
+        </button>
+        <button style={styles.button} onClick={() => navigate("subtraction")}>
+          -
+        </button>
+        <button style={styles.button} onClick={() => navigate("division")}>
+          {"\u00F7"}
+        </button>
+      </View>
+      {/* <table>
         <td>
           <tr>
             <button className="btn" onClick={() => navigate("addition")}>
@@ -35,9 +53,26 @@ function GamePanel() {
             </button>
           </tr>
         </td>
-      </table>
+      </table> */}
     </div>
   );
 }
 
 export default GamePanel;
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    width: "50%",
+    backgroundColor: "lightgreen",
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  button: {
+    width: "50%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "white",
+    borderBottomWidth: 1,
+    borderRightWidth: 1,
+  },
+});
