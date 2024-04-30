@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { StyleSheet, View } from "react-native";
-import Game from "./Game";
 
 function GamePanel() {
   const navigate = useNavigate();
@@ -12,48 +11,23 @@ function GamePanel() {
         <h1>Pick Your Mode</h1>
       </div>
       <View style={styles.buttonContainer}>
-        <button style={styles.button} onClick={() => navigate("addition")}>
+        <button style={styles.button} key="addition" onClick={() => navigate("addition")}>
           +
         </button>
         <button
           style={styles.button}
+          key="multiplication"
           onClick={() => navigate("multiplication")}
         >
           x
         </button>
-        <button style={styles.button} onClick={() => navigate("subtraction")}>
+        <button style={styles.button} key="subtraction" onClick={() => navigate("subtraction")}>
           -
         </button>
-        <button style={styles.button} onClick={() => navigate("division")}>
+        <button style={styles.button} key="division" onClick={() => navigate("division")}>
           {"\u00F7"}
         </button>
       </View>
-      {/* <table>
-        <td>
-          <tr>
-            <button className="btn" onClick={() => navigate("addition")}>
-              +
-            </button>
-          </tr>
-          <tr>
-            <button className="btn" onClick={() => navigate("multiplication")}>
-              x
-            </button>
-          </tr>
-        </td>
-        <td>
-          <tr>
-            <button className="btn" onClick={() => navigate("subtraction")}>
-              -
-            </button>
-          </tr>
-          <tr>
-            <button className="btn" onClick={() => navigate("division")}>
-              /
-            </button>
-          </tr>
-        </td>
-      </table> */}
     </div>
   );
 }
