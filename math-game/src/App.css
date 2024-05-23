@@ -8,14 +8,14 @@
 }
 
 .App-header {
-    background-color: #282c34;
+    background-color: #ECF0FC;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: black;
 }
 
 .App-link {
@@ -31,7 +31,7 @@ table {
     padding: 10px;
     font-size: 20px;
     background-color: black;
-    color: white;
+    color: black;
     border: none;
     cursor: pointer;
     box-shadow: 0 0 0 #ccc;
@@ -49,22 +49,18 @@ table {
     max-width: 1200px;
     margin: auto;
     margin-top: 10%;
-
 }
 
-#answerChoices {
-    background-color: green;
-    margin: 0;
+.game-board {
+    display: grid;
+    grid-template-columns: 110px 110px 110px 110px;
+    grid-template-rows: 110px 110px 110px 110px;
+    justify-content: center;
 }
 
 .cell {
-    flex: 0 0 20%;
-    padding: 20px;
-    margin: 5px;
-    height: 50px;
-    width: 50px;
-    text-align: center;
-    border: 1px solid #ccc;
+    background-color: #d9d9d9;
+    border: 2px solid black;
 }
 
 
@@ -76,5 +72,39 @@ table {
     cursor: pointer;
     font-size: 40px;
     font-weight: bold;
-    color: white;
+    color: black;
+}
+
+.displayBoard {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.pointsBlock {
+    text-align: left;
+    font-size: 80%;
+}
+
+.livesBlock {
+    text-align: right;
+    font-size: 80%;
+}
+
+.dialog {
+    max-width: 45rem;
+    padding: 1rem;
+    border: 0;
+    border-radius: 0.5rem;
+    box-shadow: hsl(0 0% 0% / 10%) 0 0 0.5rem 0.25rem;
+    position: relative;
+}
+
+.dialog::backdrop {
+    background: hsl(0 0% 0% / 50%);
+}
+
+.dialog-close-btn {
+    font-size: .75em;
+    top: .25em;
+    right: .25em;
 }
