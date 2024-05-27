@@ -2,11 +2,6 @@
     text-align: center;
 }
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
-
 .App-header {
     background-color: #ECF0FC;
     min-height: 100vh;
@@ -18,37 +13,42 @@
     color: black;
 }
 
-.App-link {
-    color: #61dafb;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.first {
-    padding: 10px;
-    font-size: 20px;
-    background-color: black;
-    color: black;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 0 0 #ccc;
-    transition: box-shadow 300ms, color 300ms;
+.title {
+    width: 800px;
+    font-size: larger;
 }
 
-.first:hover {
-    color: yellow;
-    box-shadow: 10px 10px 0 rgb(219, 219, 219);
-}
 
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: auto;
-    margin-top: 10%;
+.openingButtons {
+    margin: 20px auto;
+    width: 320px;
+    height: 320px;
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-row: 150px 150px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    align-self: center;
+
+    .gameOption {
+        background-color: #D3D3D3;
+        border-color: black;
+        padding: 20px;
+        border-radius: 10px;
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        font-family: sans-serif;
+        cursor: pointer;
+    }
+
 }
 
 .game-board {

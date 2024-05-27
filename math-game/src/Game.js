@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { GameLogic } from "./GameLogic";
 import { Arithmetic } from "./Arithmetic";
 
@@ -9,7 +9,8 @@ function Game(operator) {
   const [numbers, setNumbers] = useState([]);
   const [itemColor, setItemColor] = useState({});
   const [selected, setSelected] = useState(0);
-  const [counter, setCounter] = useState(60);
+  const [timer, setTimer] = useState(60);
+  const decrement = useRef(null);
   const MULTIPLIER = 10;
   const UNSELECTED_COLOR = '#D3D3D3';
   const SELECTED_COLOR = '#85A1EF';
@@ -22,22 +23,34 @@ function Game(operator) {
   }, []);
 
   useEffect(() => {
-    console.log(selected);
     if (selected === 3) {
         checkAnswer();
     }
   }, [selected]);
 
   useEffect(() => {
-    console.log("lives", lives);
     if (lives === 0) {
         alert("Better luck next time!");
     }
   }, [lives]);
 
   useEffect(() => {
-    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-  }, [counter]);
+    decrement.current = setInterval(() => {
+      setTimer((timer) => {
+        if (timer > 0 && timer <= 60) return timer - 1;
+        else {
+            // GAME OVER MODAL
+          clearInterval(decrement.current);
+          return timer;
+        }
+      });
+    }, 1000);
+  }, []);
+
+  const handleReset = () => {
+    clearInterval(decrement.current);
+    setTimer(60);
+  };
 
   function resetBoard() {
     generateNumbers();
@@ -79,7 +92,7 @@ function Game(operator) {
 
   function closeModal() {
     const modal = document.querySelector("#instructionModal");
-    setCounter(60);
+    handleReset();
     modal.close();
   }
 
@@ -146,7 +159,7 @@ function Game(operator) {
             <button id="closeModal" class="dialog-close-btn" onClick={closeModal}>Close</button>
         </dialog>
         <div className="displayBoard">
-            <p className="pointsBlock">Countdown: {counter} seconds <br/> Points: {points}</p>
+            <p className="pointsBlock">Countdown: {timer} seconds <br/> Points: {points}</p>
             <p className="livesBlock"> <br/> Lives: {lives}</p>
         </div>
         <div className="game-board" id="answerChoices">
