@@ -17,9 +17,9 @@ function GamePanel() {
                 +
                 </button>
                 <button
-                className="gameOption"
-                key="multiplication"
-                onClick={() => navigate("multiplication")}
+                    className="gameOption"
+                    key="multiplication"
+                    onClick={() => navigate("multiplication")}
                 >
                 x
                 </button>

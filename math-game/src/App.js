@@ -2,6 +2,7 @@ import React from "react";
 import Game from "./Game";
 import GamePanel from "./GamePanel";
 import NoMatch from "./NoMatch";
+import InProgress from "./InProgress.js";
 import {
   ADDITION,
   SUBTRACTION,
@@ -26,7 +27,7 @@ function App() {
             path="/subtraction"
             element={<Game operator={SUBTRACTION} />}
           />
-          <Route path="/division" element={<Game operator={DIVISION} />} />
+          <Route path="/division" element={<InProgress/>} /> {/* <Game operator={DIVISION} /> */}
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </header>

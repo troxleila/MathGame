@@ -1,0 +1,20 @@
+
+    1 - Fix board generation
+        Currently only works a portion of the time
+
+    2 - Disable division board X
+
+    3 - Make the game stop and say your score when you:
+            a. Run out of time
+            b. Run out of lives
+        Have it give an option to restart or go back to the home page
+
+    4 - Have numbers flash red and all deselect when youre wrong
+
+    5 - Fix timer
+
+    6 - Factor out the instruction module X
+
+    ...
+
+    100 - Take away the number logging in console

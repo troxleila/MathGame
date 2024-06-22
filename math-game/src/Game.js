@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { GameLogic } from "./GameLogic";
 import { Arithmetic } from "./Arithmetic";
+import Modal from './Modal';
+import HomeButton from "./HomeButton";
 
 function Game(operator) {
   const [lives, setLives] = useState(3);
@@ -10,6 +12,8 @@ function Game(operator) {
   const [itemColor, setItemColor] = useState({});
   const [selected, setSelected] = useState(0);
   const [timer, setTimer] = useState(60);
+  const [showInstructions, setShowInstructions] = useState(true);
+  const [gameOver, setGameOver] = useState(false);
   const decrement = useRef(null);
   const MULTIPLIER = 10;
   const UNSELECTED_COLOR = '#D3D3D3';
@@ -19,18 +23,18 @@ function Game(operator) {
     resetBoard();
     setLives(3);
     setPoints(0);
-    openModal();
   }, []);
 
   useEffect(() => {
     if (selected === 3) {
         checkAnswer();
+        // UNSELECT ANSWERS
     }
   }, [selected]);
 
   useEffect(() => {
     if (lives === 0) {
-        alert("Better luck next time!");
+        setGameOver(true);
     }
   }, [lives]);
 
@@ -39,9 +43,7 @@ function Game(operator) {
       setTimer((timer) => {
         if (timer > 0 && timer <= 60) return timer - 1;
         else {
-            // GAME OVER MODAL
-          clearInterval(decrement.current);
-          return timer;
+          setGameOver(true);
         }
       });
     }, 1000);
@@ -50,6 +52,14 @@ function Game(operator) {
   const handleReset = () => {
     clearInterval(decrement.current);
     setTimer(60);
+  };
+
+  const showModal = () => {
+    setShowInstructions(true);
+  };
+
+  const hideModal = () => {
+    setShowInstructions(false);
   };
 
   function resetBoard() {
@@ -89,17 +99,6 @@ function Game(operator) {
   const delay = (delayInms) => {
     return new Promise(resolve => setTimeout(resolve, delayInms));
   };
-
-  function closeModal() {
-    const modal = document.querySelector("#instructionModal");
-    handleReset();
-    modal.close();
-  }
-
-  function openModal() {
-    const modal = document.querySelector("#instructionModal");
-    modal.showModal();
-  }
 
   function generateNumbers() {
     let numbersWorking = [];
@@ -147,8 +146,7 @@ function Game(operator) {
   return (
     <div>
         <h1>Welcome to {operator["operator"].charAt(0).toUpperCase() + operator["operator"].slice(1)}</h1>
-        <dialog id="instructionModal" class="dialog">
-            <h3>Instructions</h3>
+        <Modal show={showInstructions} handleClose={hideModal} homeOption={false}>
             <p>
                 This game is played by selecting three numbers that are all touching each other.
                 The first two numbers selected must together equal the 3rd number when your selected
@@ -156,8 +154,13 @@ function Game(operator) {
                 Collect as many points as you can within the 60 second timer <br/><br/>
                 3 mistakes are allowed before your attempt is ended for you
             </p>
-            <button id="closeModal" class="dialog-close-btn" onClick={closeModal}>Close</button>
-        </dialog>
+        </Modal>
+        <Modal show={gameOver} handleClose={hideModal} homeOption={true}>
+            <h2>
+                Game Over! <br/> You scored {points} points!
+            </h2>
+        </Modal>
+        <HomeButton/>
         <div className="displayBoard">
             <p className="pointsBlock">Countdown: {timer} seconds <br/> Points: {points}</p>
             <p className="livesBlock"> <br/> Lives: {lives}</p>
