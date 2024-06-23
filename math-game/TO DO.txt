@@ -15,6 +15,8 @@
 
     6 - Factor out the instruction module X
 
+    7 - Fill out README
+
     ...
 
     100 - Take away the number logging in console

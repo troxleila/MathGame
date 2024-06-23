@@ -4,6 +4,7 @@ import { GameLogic } from "./GameLogic";
 import { Arithmetic } from "./Arithmetic";
 import Modal from './Modal';
 import HomeButton from "./HomeButton";
+import CountdownTimer from "./CountdownTimer";
 
 function Game(operator) {
   const [lives, setLives] = useState(3);
@@ -11,10 +12,11 @@ function Game(operator) {
   const [numbers, setNumbers] = useState([]);
   const [itemColor, setItemColor] = useState({});
   const [selected, setSelected] = useState(0);
-  const [timer, setTimer] = useState(60);
+  const [timeOut, setTimeOut] = useState(false);
   const [showInstructions, setShowInstructions] = useState(true);
   const [gameOver, setGameOver] = useState(false);
-  const decrement = useRef(null);
+  const [restart, setRestart] = useState(false);
+  const [startTimer, setStartTimer] = useState(false);
   const MULTIPLIER = 10;
   const UNSELECTED_COLOR = '#D3D3D3';
   const SELECTED_COLOR = '#85A1EF';
@@ -39,27 +41,25 @@ function Game(operator) {
   }, [lives]);
 
   useEffect(() => {
-    decrement.current = setInterval(() => {
-      setTimer((timer) => {
-        if (timer > 0 && timer <= 60) return timer - 1;
-        else {
-          setGameOver(true);
-        }
-      });
-    }, 1000);
-  }, []);
-
-  const handleReset = () => {
-    clearInterval(decrement.current);
-    setTimer(60);
-  };
-
-  const showModal = () => {
-    setShowInstructions(true);
-  };
+    console.log("Time out!")
+    if (timeOut === true) {
+        setGameOver(true);
+    }
+  }, [timeOut]);
 
   const hideModal = () => {
-    setShowInstructions(false);
+    if (showInstructions === true) {
+        setShowInstructions(false);
+        setStartTimer(true);
+    } else if (gameOver === true) {
+        setGameOver(false);
+        resetBoard();
+        setLives(3);
+        setPoints(0);
+        setRestart(!restart);
+        setStartTimer(false);
+    }
+    
   };
 
   function resetBoard() {
@@ -157,12 +157,17 @@ function Game(operator) {
         </Modal>
         <Modal show={gameOver} handleClose={hideModal} homeOption={true}>
             <h2>
-                Game Over! <br/> You scored {points} points!
+                Game Over! <br/><br/> You scored {points} points!
             </h2>
         </Modal>
-        <HomeButton/>
+        {console.log("Game over status:")}
+        {console.log(startTimer)}
+        <HomeButton hidden={startTimer}/>
         <div className="displayBoard">
-            <p className="pointsBlock">Countdown: {timer} seconds <br/> Points: {points}</p>
+            <div className="pointsBlock">
+                <CountdownTimer initialSeconds={10} setTimeOut={setTimeOut} restart={restart} start={startTimer}/>
+                <p>Points: {points}</p>
+            </div>
             <p className="livesBlock"> <br/> Lives: {lives}</p>
         </div>
         <div className="game-board" id="answerChoices">

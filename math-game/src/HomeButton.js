@@ -2,22 +2,31 @@ import { useNavigate } from "react-router-dom";
 import { View } from "react-native";
 import { useEffect, useState } from "react";
 
-const HomeButton = () => {
+const HomeButton = ({ hidden }) => {
   const navigate = useNavigate();
-
   const [home, setHome] = useState(false);
 
   useEffect(() => {
-    navigate("/")
-  }, [setHome]);
-
+    if (home === true) {
+        navigate("/")
+    }
+  }, [home, navigate]);
 
   return (
-    <View>
-        <button onClick={setHome(!home)}>
-            Home
-        </button>
-    </View>
+    <div>
+        {console.log("Hidden status")}
+        {console.log(hidden)}
+        { hidden ?
+            <div>
+            </div>
+            :
+            <View>
+                <button onClick={() => setHome(!home)}>
+                    Home
+                </button>
+            </View>
+        }
+    </div>
   );
 };
 

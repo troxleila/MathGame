@@ -8,13 +8,8 @@ const Modal = ({ show, handleClose, homeOption, children }) => {
     <div className={showHideClassName}>
       <section className="modal-main">
         {children}
-        <button onClick={handleClose}>{homeOption ? "Start new game" : "Close"}</button>
-        {
-            homeOption ?
-                <HomeButton/>
-            :
-            ""
-        }
+        <button onClick={() => handleClose()}>{homeOption ? "Start new game" : "Close"}</button>
+        <HomeButton hidden = {homeOption}/>
       </section>
     </div>
   );
