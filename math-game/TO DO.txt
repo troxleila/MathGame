@@ -11,9 +11,9 @@
 
     4 - Have numbers flash red and all deselect when youre wrong
 
-    5 - Fix timer
+    5 - Have timer start counting when instructions close
 
-    6 - Factor out the instruction module X
+    6 - Get the home buttons to be better placed and properly hidden
 
     7 - Fill out README
 

@@ -21,8 +21,12 @@ table {
 .title {
     width: 800px;
     font-size: larger;
+    display: flex;
+    justify-content: center;
+    margin-left: 22%;
+    margin-right: 22%;
+    margin-top: 1%;
 }
-
 
 .openingButtons {
     margin: 20px auto;
