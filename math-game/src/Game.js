@@ -45,6 +45,7 @@ function Game(operator) {
     console.log("Time out!");
     if (timeOut === true) {
       setGameOver(true);
+      setShowInstructions(false);
     }
   }, [timeOut]);
 
@@ -146,7 +147,10 @@ function Game(operator) {
 
   return (
     <div>
-      <Header />
+      <div class="page-width">
+        <Header />
+      </div>
+
       <h1>
         Welcome to{" "}
         {operator["operator"].charAt(0).toUpperCase() +
@@ -170,7 +174,6 @@ function Game(operator) {
       </Modal>
       {console.log("Game over status:")}
       {console.log(startTimer)}
-      <HomeButton hidden={startTimer} />
       <div className="displayBoard">
         <div className="pointsBlock">
           <CountdownTimer

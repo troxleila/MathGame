@@ -32,3 +32,10 @@
 .display-none {
     display: none;
 }
+
+.newButtons {
+    display: grid;
+    grid-template-columns: 20% 20%;
+    content: center;
+    margin: auto;
+}

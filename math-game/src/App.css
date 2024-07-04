@@ -13,6 +13,14 @@
     color: black;
 }
 
+.page-width {
+    width: 1450px !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 50px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -82,6 +90,9 @@ table {
 .displayBoard {
     display: grid;
     grid-template-columns: 50% 50%;
+    content: center;
+    margin: auto;
+    width: 440px;
 }
 
 .pointsBlock {
