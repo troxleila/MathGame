@@ -6,11 +6,14 @@ const Modal = ({ show, handleClose, homeOption, children }) => {
 
   return (
     <div className={showHideClassName}>
+      <div className="modal-overlay"></div>
       <section className="modal-main">
         {children}
-        <div class="newButtons">
+        <div
+          class={homeOption ? "newButtons oneButton" : "newButtons twoButtons"}
+        >
           <button onClick={() => handleClose()}>
-            {homeOption ? "Start new game" : "Close"}
+            {homeOption ? "Start new game" : "Start"}
           </button>
           <HomeButton hidden={homeOption} style={{ position: "fixed" }} />
         </div>

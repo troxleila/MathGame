@@ -2,9 +2,9 @@ import "./Header.css";
 import HomeButton from "./HomeButton";
 import LogoImg from "./temp_math_logo.jpg";
 
-const Header = () => {
+const Header = (modalOpen) => {
   return (
-    <div className="globalNav">
+    <div className={modalOpen ? "globalNav dim" : "globalNav"}>
       <nav className="NavbarItems">
         <div className="logo">
           <h3>

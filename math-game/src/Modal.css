@@ -4,10 +4,19 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    /* background: rgba(0, 0, 0, 0.6); */
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
 }
 
 .modal-main {
@@ -17,6 +26,7 @@
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 10;
     /* Ensure modal content is centered */
     position: relative;
     top: 20%;
@@ -35,7 +45,14 @@
 
 .newButtons {
     display: grid;
-    grid-template-columns: 20% 20%;
-    content: center;
+    justify-content: center;
     margin: auto;
+}
+.newButtons.oneButton {
+    grid-template-columns: 20%;
+}
+
+.newButtons.twoButtons {
+    grid-template-columns: 20% 20%;
+    gap: 15px;
 }

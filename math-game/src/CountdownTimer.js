@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const CountdownTimer = ({ initialSeconds = 0, setTimeOut, restart, start }) => {
   const [seconds, setSeconds] = useState(initialSeconds);
@@ -26,20 +26,20 @@ const CountdownTimer = ({ initialSeconds = 0, setTimeOut, restart, start }) => {
     setActive(start);
   }, [start]);
 
+  useEffect(() => {
+    setSeconds(initialSeconds);
+  }, [active]);
+
   const handleReset = () => {
     setSeconds(initialSeconds);
   };
-
-
 
   return (
     <div>
       {seconds === 0 ? (
         <p>Time's up!</p>
       ) : (
-        <p>
-          Time Remaining: {seconds < 10 ? `0${seconds}` : seconds}
-        </p>
+        <p>Time Remaining: {seconds < 10 ? `0${seconds}` : seconds}</p>
       )}
     </div>
   );

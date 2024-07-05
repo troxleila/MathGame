@@ -60,6 +60,7 @@ function Game(operator) {
       setPoints(0);
       setRestart(!restart);
       setStartTimer(false);
+      //   setTimeOut(false);
     }
   };
 
@@ -147,15 +148,6 @@ function Game(operator) {
 
   return (
     <div>
-      <div class="page-width">
-        <Header />
-      </div>
-
-      <h1>
-        Welcome to{" "}
-        {operator["operator"].charAt(0).toUpperCase() +
-          operator["operator"].slice(1)}
-      </h1>
       <Modal show={showInstructions} handleClose={hideModal} homeOption={false}>
         <p>
           This game is played by selecting three numbers that are all touching
@@ -172,12 +164,21 @@ function Game(operator) {
           <br /> You scored {points} points!
         </h2>
       </Modal>
+      <div class={`page-width ${showInstructions || gameOver ? "dimmed" : ""}`}>
+        <Header />
+      </div>
+
+      <h1 style={{ marginTop: "30px", marginBottom: "20px" }}>
+        Welcome to{" "}
+        {operator["operator"].charAt(0).toUpperCase() +
+          operator["operator"].slice(1)}
+      </h1>
       {console.log("Game over status:")}
       {console.log(startTimer)}
       <div className="displayBoard">
         <div className="pointsBlock">
           <CountdownTimer
-            initialSeconds={10}
+            initialSeconds={60}
             setTimeOut={setTimeOut}
             restart={restart}
             start={startTimer}

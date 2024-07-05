@@ -21,6 +21,10 @@
     margin-bottom: 50px;
 }
 
+.page-width.dim {
+    background-color: rgba(40, 44, 52, 0.6);
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -68,6 +72,7 @@ table {
     grid-template-columns: 110px 110px 110px 110px;
     grid-template-rows: 110px 110px 110px 110px;
     justify-content: center;
+    margin-bottom: 15px;
 }
 
 .cell {

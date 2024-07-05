@@ -132,13 +132,14 @@
 
         button {
             cursor: pointer;
-            border-radius: .375rem;
+            border-radius: .15rem;
             margin: 5px;
             font-size: 1.0625rem;
-            line-height: 1.6;
+            line-height: 1.2;
             color: black;
             padding: .6rem 1.2rem;
             border: none;
+            height: 40px;
 
             &:hover {
                 color: black;
