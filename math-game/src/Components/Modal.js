@@ -1,7 +1,7 @@
 import "./Modal.css";
 import HomeButton from "./HomeButton";
 
-const Modal = ({ show, handleClose, homeOption, children }) => {
+const Modal = ({ show, handleClose, homeOptionHidden, children }) => {
   const showHideClassName = show ? "modal display-block" : "modal display-none";
 
   return (
@@ -10,12 +10,14 @@ const Modal = ({ show, handleClose, homeOption, children }) => {
       <section className="modal-main">
         {children}
         <div
-          class={homeOption ? "newButtons oneButton" : "newButtons twoButtons"}
+          class={
+            homeOptionHidden ? "newButtons oneButton" : "newButtons twoButtons"
+          }
         >
           <button onClick={() => handleClose()}>
-            {homeOption ? "Start new game" : "Start"}
+            {homeOptionHidden ? "Start" : "Start new game"}
           </button>
-          <HomeButton hidden={homeOption} style={{ position: "fixed" }} />
+          <HomeButton hidden={homeOptionHidden} style={{ position: "fixed" }} />
         </div>
       </section>
     </div>

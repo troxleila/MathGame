@@ -5,17 +5,20 @@
     2 - Disable division board X
 
     3 - Make the game stop and say your score when you:
-            a. Run out of time
-            b. Run out of lives
+            a. Run out of time X
+            b. Run out of lives X
+            c. Make sure if can't be overriden (I think?)
         Have it give an option to restart or go back to the home page
 
-    4 - Have numbers flash red and all deselect when youre wrong
+    4 - Have numbers flash red and all deselect when youre wrong X
 
-    5 - Have timer start counting when instructions close
+    5 - Have timer start counting when instructions close X
 
-    6 - Get the home buttons to be better placed and properly hidden
+    6 - Get the home buttons to be better placed and properly hidden X
 
     7 - Fill out README
+
+    8 - Refactor/Organize
 
     ...
 

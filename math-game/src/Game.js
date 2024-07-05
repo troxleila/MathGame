@@ -2,10 +2,9 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { GameLogic } from "./GameLogic";
 import { Arithmetic } from "./Arithmetic";
-import Modal from "./Modal";
-import HomeButton from "./HomeButton";
-import CountdownTimer from "./CountdownTimer";
-import Header from "./Header";
+import Modal from "./Components/Modal";
+import CountdownTimer from "./Components/CountdownTimer";
+import Header from "./Components/Header";
 
 function Game(operator) {
   const [lives, setLives] = useState(3);
@@ -21,6 +20,8 @@ function Game(operator) {
   const MULTIPLIER = 10;
   const UNSELECTED_COLOR = "#D3D3D3";
   const SELECTED_COLOR = "#85A1EF";
+  const WRONG_COLOR = "#e02b2b";
+  const CORRECT_COLOR = "#36de15";
 
   useEffect(() => {
     resetBoard();
@@ -31,7 +32,7 @@ function Game(operator) {
   useEffect(() => {
     if (selected === 3) {
       checkAnswer();
-      // UNSELECT ANSWERS
+      unselectColors();
     }
   }, [selected]);
 
@@ -54,18 +55,19 @@ function Game(operator) {
       setShowInstructions(false);
       setStartTimer(true);
     } else if (gameOver === true) {
+      console.log("in game over");
       setGameOver(false);
       resetBoard();
       setLives(3);
       setPoints(0);
       setRestart(!restart);
       setStartTimer(false);
-      //   setTimeOut(false);
+      setTimeOut(false);
     }
   };
 
-  function resetBoard() {
-    generateNumbers();
+  async function unselectColors() {
+    await delay(300);
     setSelected(0);
     for (let i = 0; i < 16; i++) {
       let updatedValue = { [i]: UNSELECTED_COLOR };
@@ -74,6 +76,11 @@ function Game(operator) {
         ...updatedValue,
       }));
     }
+  }
+
+  function resetBoard() {
+    unselectColors();
+    generateNumbers();
   }
 
   async function checkAnswer() {
@@ -90,10 +97,26 @@ function Game(operator) {
     console.log(selectedAnswer);
     if (gameLogic.correctAnswer(selectedAnswerIndex)) {
       setPoints(points + 100);
+      flashColor(true);
       await delay(400);
       resetBoard();
     } else {
+      flashColor(false);
       setLives(lives - 1);
+    }
+  }
+
+  function flashColor(answerType) {
+    const flashColor = answerType ? CORRECT_COLOR : WRONG_COLOR;
+    for (let i = 0; i < 16; i++) {
+      let updatedValue = { [i]: UNSELECTED_COLOR };
+      if (itemColor[i] === SELECTED_COLOR) {
+        updatedValue = { [i]: flashColor };
+      }
+      setItemColor((items) => ({
+        ...items,
+        ...updatedValue,
+      }));
     }
   }
 
@@ -138,9 +161,7 @@ function Game(operator) {
     if (itemColor[index] === SELECTED_COLOR) {
       setItemColor({ ...itemColor, [index]: UNSELECTED_COLOR });
       setSelected(selected - 1);
-    } else if (selected === 3) {
-      alert("You can only pick 3 numbers at a time!");
-    } else {
+    } else if (selected !== 3) {
       setItemColor({ ...itemColor, [index]: SELECTED_COLOR });
       setSelected(selected + 1);
     }
@@ -148,7 +169,11 @@ function Game(operator) {
 
   return (
     <div>
-      <Modal show={showInstructions} handleClose={hideModal} homeOption={false}>
+      <Modal
+        show={showInstructions}
+        handleClose={hideModal}
+        homeOptionHidden={true}
+      >
         <p>
           This game is played by selecting three numbers that are all touching
           each other. The first two numbers selected must together equal the 3rd
@@ -158,7 +183,7 @@ function Game(operator) {
           <br />3 mistakes are allowed before your attempt is ended for you
         </p>
       </Modal>
-      <Modal show={gameOver} handleClose={hideModal} homeOption={true}>
+      <Modal show={gameOver} handleClose={hideModal} homeOptionHidden={false}>
         <h2>
           Game Over! <br />
           <br /> You scored {points} points!
@@ -174,11 +199,15 @@ function Game(operator) {
           operator["operator"].slice(1)}
       </h1>
       {console.log("Game over status:")}
+      {console.log(gameOver)}
+      {console.log("Time out status:")}
+      {console.log(timeOut)}
+      {console.log("Timer going?")}
       {console.log(startTimer)}
       <div className="displayBoard">
         <div className="pointsBlock">
           <CountdownTimer
-            initialSeconds={60}
+            initialSeconds={20}
             setTimeOut={setTimeOut}
             restart={restart}
             start={startTimer}

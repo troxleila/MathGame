@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { View } from "react-native";
-import Header from "./Header";
+import Header from "./Components/Header";
 function GamePanel() {
   const navigate = useNavigate();
 

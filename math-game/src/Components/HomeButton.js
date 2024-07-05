@@ -8,24 +8,19 @@ const HomeButton = ({ hidden }) => {
 
   useEffect(() => {
     if (home === true) {
-        navigate("/")
+      navigate("/");
     }
   }, [home, navigate]);
 
   return (
     <div>
-        {console.log("Hidden status")}
-        {console.log(hidden)}
-        { hidden ?
-            <div>
-            </div>
-            :
-            <View>
-                <button onClick={() => setHome(!home)}>
-                    Home
-                </button>
-            </View>
-        }
+      {hidden ? (
+        <div></div>
+      ) : (
+        <View>
+          <button onClick={() => setHome(!home)}>Home</button>
+        </View>
+      )}
     </div>
   );
 };
