@@ -27,7 +27,7 @@ function App() {
             path="/subtraction"
             element={<Game operator={SUBTRACTION} />}
           />
-          <Route path="/division" element={<InProgress/>} /> {/* <Game operator={DIVISION} /> */}
+          <Route path="/division" element={<Game operator={DIVISION}/>} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </header>

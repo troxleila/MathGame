@@ -1,7 +1,7 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { GameLogic } from "./GameLogic";
-import { Arithmetic } from "./Arithmetic";
+import { generateBoard } from "./BoardGeneration";
 import Modal from "./Components/Modal";
 import CountdownTimer from "./Components/CountdownTimer";
 import Header from "./Components/Header";
@@ -80,7 +80,7 @@ function Game(operator) {
 
   function resetBoard() {
     unselectColors();
-    generateNumbers();
+    setNumbers(generateBoard(operator));
   }
 
   async function checkAnswer() {
@@ -90,7 +90,7 @@ function Game(operator) {
     for (const key in itemColor) {
       if (itemColor[key] === SELECTED_COLOR) {
         selectedAnswerIndex = [...selectedAnswerIndex, Number(key)];
-        selectedAnswer = [...selectedAnswer, numbers[Number(key)]["newNumber"]];
+        selectedAnswer = [...selectedAnswer, numbers[Number(key)]["value"]];
       }
     }
     console.log(selectedAnswerIndex);
@@ -123,38 +123,6 @@ function Game(operator) {
   const delay = (delayInms) => {
     return new Promise((resolve) => setTimeout(resolve, delayInms));
   };
-
-  function generateNumbers() {
-    let numbersWorking = [];
-    let startingNumbers = [];
-    const combiner = Arithmetic(operator);
-    for (let i = 0; i < 8; i++) {
-      let newNumber = Math.round(Math.random() * MULTIPLIER);
-      startingNumbers.push(newNumber);
-      for (let j = i - 1; j >= 0; j--) {
-        startingNumbers.push(combiner.operate(newNumber, startingNumbers[j]));
-      }
-    }
-    for (let i = 0; i < 16; i++) {
-      let whichNumberIndex = Math.round(
-        Math.random() * (startingNumbers.length - 1)
-      );
-      let newNumber = startingNumbers[whichNumberIndex];
-      numbersWorking.push({ i, newNumber });
-    }
-
-    if (!checkPossibilityOfSuccess(numbersWorking)) {
-      generateNumbers();
-    }
-    console.log("FINAL NUMBERS");
-    console.log(numbersWorking);
-    setNumbers(numbersWorking);
-  }
-
-  function checkPossibilityOfSuccess(numbersChecking) {
-    const gameLogic = GameLogic(numbersChecking, operator);
-    return gameLogic.possibilityOfSuccess();
-  }
 
   function answerSelected(event) {
     const index = Number(event.currentTarget.getAttribute("index"));
@@ -207,7 +175,7 @@ function Game(operator) {
       <div className="displayBoard">
         <div className="pointsBlock">
           <CountdownTimer
-            initialSeconds={20}
+            initialSeconds={60}
             setTimeOut={setTimeOut}
             restart={restart}
             start={startTimer}
@@ -230,9 +198,9 @@ function Game(operator) {
               key={number["i"]}
               index={number["i"]}
               onClick={answerSelected}
-              value={number["newNumber"]}
+              value={number["value"]}
             >
-              {number["newNumber"]}
+              {number["value"]}
             </button>
           </div>
         ))}

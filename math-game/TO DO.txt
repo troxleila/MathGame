@@ -1,6 +1,6 @@
 
     1 - Fix board generation
-        Currently only works a portion of the time
+        Currently only works a portion of the time X
 
     2 - Disable division board X
 
