@@ -109,3 +109,17 @@ table {
     text-align: right;
     font-size: 80%;
 }
+
+.gifBox {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    content: center;
+    margin: auto;
+    margin-left: 25%;
+    margin-bottom: 20px;
+
+    .gif {
+        content: center;
+        max-width: 100px;
+    }
+}

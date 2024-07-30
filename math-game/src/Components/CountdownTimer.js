@@ -8,6 +8,8 @@ const CountdownTimer = ({ initialSeconds = 0, setTimeOut, restart, start }) => {
     let timer = setInterval(() => {
       if (seconds > 0) {
         setSeconds(seconds - 1);
+      } else if (start === false) {
+        setSeconds(initialSeconds);
       } else {
         clearInterval(timer);
         setTimeOut(true);

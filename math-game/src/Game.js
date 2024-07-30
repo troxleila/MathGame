@@ -5,6 +5,8 @@ import { generateBoard } from "./BoardGeneration";
 import Modal from "./Components/Modal";
 import CountdownTimer from "./Components/CountdownTimer";
 import Header from "./Components/Header";
+import correctGif from "./Components/correctGif.gif";
+import incorrectGif from "./Components/incorrectGif.gif";
 
 function Game(operator) {
   const [lives, setLives] = useState(3);
@@ -17,7 +19,6 @@ function Game(operator) {
   const [gameOver, setGameOver] = useState(false);
   const [restart, setRestart] = useState(false);
   const [startTimer, setStartTimer] = useState(false);
-  const MULTIPLIER = 10;
   const UNSELECTED_COLOR = "#D3D3D3";
   const SELECTED_COLOR = "#85A1EF";
   const WRONG_COLOR = "#e02b2b";
@@ -43,7 +44,6 @@ function Game(operator) {
   }, [lives]);
 
   useEffect(() => {
-    console.log("Time out!");
     if (timeOut === true) {
       setGameOver(true);
       setShowInstructions(false);
@@ -55,7 +55,6 @@ function Game(operator) {
       setShowInstructions(false);
       setStartTimer(true);
     } else if (gameOver === true) {
-      console.log("in game over");
       setGameOver(false);
       resetBoard();
       setLives(3);
@@ -93,8 +92,6 @@ function Game(operator) {
         selectedAnswer = [...selectedAnswer, numbers[Number(key)]["value"]];
       }
     }
-    console.log(selectedAnswerIndex);
-    console.log(selectedAnswer);
     if (gameLogic.correctAnswer(selectedAnswerIndex)) {
       setPoints(points + 100);
       flashColor(true);
@@ -141,15 +138,19 @@ function Game(operator) {
         show={showInstructions}
         handleClose={hideModal}
         homeOptionHidden={true}
-      >
+        >
         <p>
-          This game is played by selecting three numbers that are all touching
-          each other. The first two numbers selected must together equal the 3rd
-          number when your selected operator is used <br />
-          <br />
-          Collect as many points as you can within the 60 second timer <br />
-          <br />3 mistakes are allowed before your attempt is ended for you
+        This game is played by selecting three numbers that are all touching
+        each other. The first two numbers selected must together equal the 3rd
+        number when your selected operator is used <br />
+        <br />
+        Collect as many points as you can within the 60 second timer <br />
+        <br />3 mistakes are allowed before your attempt is ended for you
         </p>
+        <div className="gifBox">
+            <img className="gif" src={correctGif}/>
+            <img className="gif" src={incorrectGif}/>
+        </div>
       </Modal>
       <Modal show={gameOver} handleClose={hideModal} homeOptionHidden={false}>
         <h2>
@@ -166,12 +167,6 @@ function Game(operator) {
         {operator["operator"].charAt(0).toUpperCase() +
           operator["operator"].slice(1)}
       </h1>
-      {console.log("Game over status:")}
-      {console.log(gameOver)}
-      {console.log("Time out status:")}
-      {console.log(timeOut)}
-      {console.log("Timer going?")}
-      {console.log(startTimer)}
       <div className="displayBoard">
         <div className="pointsBlock">
           <CountdownTimer

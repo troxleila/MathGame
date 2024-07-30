@@ -28,7 +28,6 @@ export function GameLogic(numbers, operator) {
     if (!selectedAnswerIndeces.includes(newIndex)) return false;
 
     if (finalElement && numbers[newIndex]["value"] === workingNumber) {
-      console.log("ANSWER", workingNumber);
       return true;
     } else if (finalElement) {
       return false;

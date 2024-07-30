@@ -65,10 +65,7 @@ export function generateBoard(operator) {
         }
       }
     }
-    console.log("\nSolutions:");
-    solutions.forEach((solution) => console.log(solution));
     if (solutions.length === 0) {
-        console.log("Regenerating board");
         board = generateBoard(operator)
     } 
     return board

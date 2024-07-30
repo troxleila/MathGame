@@ -9,7 +9,8 @@
 
     .NavbarItems {
         background-color: white;
-        height: 40px; /* CHANGE */
+        height: 40px;
+        /* CHANGE */
         padding: auto;
         display: flex;
         align-items: center;
@@ -22,16 +23,19 @@
     }
 
     .logo {
-        width: 4%;
+        width: 2.8%;
         margin-left: .5rem;
         margin-right: 5px;
+
         h3 {
-            color: #6c6a6a; /* CHANGE */
+            color: #6c6a6a;
+            /* CHANGE */
             margin: 0px 0;
             font-size: .1rem !important;
             font-weight: 300 !important;
 
-            color: #6c6a6a; /* CHANGE */
+            color: #6c6a6a;
+            /* CHANGE */
 
             img {
                 width: 90%;
@@ -45,7 +49,8 @@
         grid-template-columns: repeat(10, auto);
         list-style: none;
         justify-content: flex-start;
-        color: #D3D3D3; /* CHANGE */
+        color: #D3D3D3;
+        /* CHANGE */
         padding: .6rem 0 0 1rem;
         line-height: 30px;
 
@@ -66,7 +71,8 @@
     }
 
     .parent {
-        color: black; /* CHANGE */
+        color: black;
+        /* CHANGE */
 
         .icon {
             display: none;
@@ -74,9 +80,11 @@
     }
 
     .parent:hover {
-        border-bottom: solid 2px #6c6a6a; /* CHANGE */
+        border-bottom: solid 2px #6c6a6a;
+        /* CHANGE */
         transition: border-bottom .1s ease-out;
-        color: black; /* CHANGE */
+        color: black;
+        /* CHANGE */
 
         .subMenu {
             display: block;
@@ -99,14 +107,16 @@
 
     .navLinks {
         text-decoration: none;
-        color: black; /* CHANGE */
+        color: black;
+        /* CHANGE */
         border-bottom: solid 2px white;
         padding-bottom: .5em;
     }
 
     .navLinks:hover {
         border-radius: 2px;
-        color: black; /* CHANGE */
+        color: black;
+        /* CHANGE */
     }
 
     .actions {
