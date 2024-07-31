@@ -148,8 +148,8 @@ function Game(operator) {
         <br />3 mistakes are allowed before your attempt is ended for you
         </p>
         <div className="gifBox">
-            <img className="gif" src={correctGif}/>
-            <img className="gif" src={incorrectGif}/>
+            <img className="gif" src={correctGif} alt="Examples of correct answer configurations"/>
+            <img className="gif" src={incorrectGif} alt="Examples of incorrect answer configurations"/>
         </div>
       </Modal>
       <Modal show={gameOver} handleClose={hideModal} homeOptionHidden={false}>

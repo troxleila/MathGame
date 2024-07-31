@@ -2,7 +2,6 @@ import React from "react";
 import Game from "./Game";
 import GamePanel from "./GamePanel";
 import NoMatch from "./NoMatch";
-import InProgress from "./InProgress.js";
 import {
   ADDITION,
   SUBTRACTION,
